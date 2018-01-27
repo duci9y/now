@@ -5,13 +5,13 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Evevnt Details</title>
+        <title>Global Feed</title>
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <link href="details_styles.css" type="text/css" rel="stylesheet" />
+        <link href="feed_global_styles.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
         <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-                <a class="navbar-brand" href="#">Flare / event details</a>
+                <a class="navbar-brand" href="#">Flare / global feed</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                 </button>
@@ -43,6 +43,27 @@
                 </div>
         </nav>
         <main role="main" class="container">
+                <div class="media row">
+                        <div class="media-left media-middle">
+                                <img src="profile_icon_sample.jpg" class="media-object" style="width:60px">
+                        </div>
+                        <div class="media-body">
+                                <h4 class="media-heading">Olivia Sobvechik</h4>
+                                <div class="feed_event_info row">
+                                        <div class="col">
+                                                LOCATION
+                                        </div>
+                                        <div class="col">
+                                                TIME DURATION
+                                        </div>
+                                        <div class="col">
+                                                TIME POSTED
+                                        </div>
+                                </div>
+                                <p>Lorem ipsum...</p>
+                        </div>
+                </div>
+<!--
                 <div class="row profile_info">
                         <div class="col-4 col-sm-3 col-md-2 col-lg-2 col-xl-2">
                                 <img class="profile_image" src="profile_icon_sample.jpg" width="100%"/>
@@ -51,13 +72,9 @@
                                 <h3 class="username">
                                         Olivia Sobvechik
                                 </h3>
-                                <p id="post_time">
-                                        Posted 25 minutes ago.
-                                </p>
                                 <h6 class="user_description">
                                         I am very quirky because I go to Tufts.
                                 </h6>
-
                         </div>
                 </div>
                 <div class="row event_info">
@@ -76,12 +93,12 @@
                 <div class="row" id="map"></div>
                 <div class="connect_bar">
                         <button type="button" class="btn btn-primary button_connect">Connect</button>
-                </div>
+                </div> -->
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-        <script src="details_scripts.js"></script>
-        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCECGPK1S7gGkDq-hzbQOXIanEu6kxk738&callback=initMap"></script>
+        <script src="feed_global_scripts.js"></script>
+        <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCECGPK1S7gGkDq-hzbQOXIanEu6kxk738&callback=initMap"></script> -->
 </body>
 </html>
