@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+	<title>Flare Profile Page</title>
+	<link rel="stylesheet" type="text/css" href="vs-profile.css">
+	<script src="https://use.fontawesome.com/944a8f6eea.js"></script>
+  </head>
+
+
+  <body>
+  		<nav class="navbar navbar-dark bg-dark fixed-top header">
+  			<a class="navbar-brand" href="#">Navbar</a>
+  		</nav>
+
+	<div class="container">
+		<main class="mx-auto content">
+			<header class="mx-auto">
+				<div class="row">
+					<div class="col-sm-6">
+						<img class="image-fluid rounded-circle mx-auto d-block profilepic" src=" https://downloads.andyroid.net/wp-content/uploads/2015/12/mr-square-icon.png" alt="profile pic">
+					</div>
+					<div class="col-sm-6 text-justify text-center">
+						<div id="info">
+							<div id="name">Red Happy</div>
+							<div>Age</div>
+							<div>Something Else</div>
+						</div>
+					</div>
+				</div>
+				<div class="row" id="bio">
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+				</div>
+				<button type="button" class="btn btn-primary float-right" id="edit-btn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button>
+
+
+				<button type="button" class="btn btn-link float-right" id="cancel-btn"><i class="fa fa-times" aria-hidden="true"></i> Cancel</button>
+
+				<button type="button" class="btn btn-primary float-right" id="save-btn"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save</button>
+
+			</header>
+		</main>
+
+			
+	</div>
+
+    <!-- jQuery first, then Tether, then Bootstrap JS. -->
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+    <script>
+    	var biotext;
+    	function edit() {
+    		$("#bio").attr("contenteditable", "true");
+    		$("#edit-btn").css("display", "none");
+    		$("#save-btn").show();
+    		$("#cancel-btn").show();
+    		$("#bio").css("border", "black solid 2px");
+    		biotext = $("#bio").html();
+
+    	}
+
+    	function save() {
+    		$("#bio").attr("contenteditable", "false");
+    		$("#edit-btn").show();
+    		$("#save-btn").css("display", "none");
+    		$("#cancel-btn").css("display", "none");
+    		$("#bio").css("border", "none");
+
+    	}
+
+    	function cancel() {
+    		$("#bio").html(biotext);
+    		$("#edit-btn").show();
+    		$("#save-btn").css("display", "none");
+    		$("#cancel-btn").css("display", "none");
+    		$("#bio").css("border", "none");
+    	}
+
+    	$(document).ready(function() {
+    		$("#save-btn").css("display", "none");
+    		$("#cancel-btn").css("display", "none");
+    		$("#edit-btn").on('click', edit);
+    		$("#save-btn").on('click', save);
+    		$("#cancel-btn").on('click', cancel);
+
+    	});
+
+
+    </script>
+  </body>
+</html>
