@@ -11,3 +11,13 @@ function initMap(){
           map: map
         });
 }
+
+var connect_url = "PLACEHOLDER"
+$.ajax(connect_url, {
+        method : "GET",
+        data: { eventID: placeholder }
+}).done(function(){
+        console.log("Successfully done request");
+}).fail(function(){
+        console.error("Error on request");
+});
