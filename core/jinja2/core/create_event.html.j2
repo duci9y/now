@@ -10,16 +10,35 @@
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js">
 		
 	</script>
+	<link rel="stylesheet" type="text/css" href="{{ static('core/profile.css') }}">
+    	<script src="https://use.fontawesome.com/944a8f6eea.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Arvo|Lato" rel="stylesheet">
 	<title>Flare | Post</title>
 </head>
 <body>
 	<container>
-		<nav class="navbar navbar-dark bg-dark">
-			<a class="navbar-brand" href="#">
-				<button type="button" class="btn btn-dark btn-sm">Cancel</button>
-			</a>
+		<nav class="navbar navbar-dark bg-dark navbar-expand-sm fixed-top" id="new-dark">
+			<a class="navbar-brand" id="brandname" href="#"><i class="fa fa-asterisk" aria-hidden="true"></i>Flare</a>
+			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item ">
+        <a class="nav-link" href="#">Feed</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="../profile">Profile</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Creat Event<span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+  </div>
+
 		</nav>
-		<form class="container">
+		<form class="container create-f">
 			<div class="form-row">
 				<div class="col align-self-start"></div>
 				<div class="form-group col- col-sm-6 col-md-6 col-lg-6 align-self-center" style="padding-top: 15px">
@@ -51,7 +70,7 @@
 				</div>
 				<div class="col align-self-end"></div>
 			</div>
-			<button type="submit" onclick="pushData(this)" class="btn btn-dark btn-lg" data-toggle="button" aria-pressed="false" autocomplete="off">Post</button>
+			<button type="submit" onclick="pushData(this)" class="btn btn-dark btn-lg better-blue" data-toggle="button" aria-pressed="false" autocomplete="off">Post</button>
 		</form>
 	</container>
 	<!-- Bootstrap -->

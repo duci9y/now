@@ -3,6 +3,10 @@
 	margin: 0;
 }
 
+body{
+	font-family: 'Lato', sans-serif;
+}
+
 #name{
 	font-weight: bold;
 	font-size: 30px;
@@ -11,14 +15,18 @@
 .content{
 	width: 100%;
 	padding: 5%;
+}
+
+.create-f, .content{
 	padding-top: 6em;
 }
+
 #bio{
 	padding: 2%;
 }
 
 #info{
-	padding-top: 20%;
+	padding-top: 15%;
 	padding-bottom: 10%;
 }
 
@@ -34,4 +42,28 @@
 .textedit{
 	width: 100%;
 	min-height: 100px;
+}
+
+#brandname{
+	font-family: 'Arvo', serif;
+	color: #FFC636;
+}
+
+#bio{
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+	margin-bottom: 3%;
+	display: block;
+}
+
+#new-dark{
+	background-color: #474143;
+}
+
+.better-blue{
+	background-color: #00ada9;
+	border: 1px solid #00ada9;
+}
+
+#cancel-btn{
+	color: #00ada9;
 }
