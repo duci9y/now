@@ -83,7 +83,3 @@ $(document).ready(function(){
                 window.location.href = "/event/" + event_id;
         });
 });
-//
-// $("#feed_display").on('click', 'media',function(event){
-//
-//});
