@@ -51,7 +51,6 @@ function update_location(location){
         pollEvents(location);
 }
 
-//might be a better idea constructing the elements then filling in data
 function update_event_feed(events){
         console.log(events.length);
         for(var i = 0; i < events.length; i++){
@@ -69,19 +68,12 @@ function update_event_feed(events){
                 $.ajax({async: false, url: '/api/profiles/' + events[i]["host"]}
                 ).done(function(request){
                         console.log(request);
-                        icon_url = "http://graph.facebook.com/" + request.fbid + "/picture?type=small";
+                        icon_url = "//graph.facebook.com/" + request.fbid + "/picture?type=small";
                         $media_element.children(".media-left").append("<img src=" + icon_url + " class='media-object m-child' style='width:60px'>");
                         $media_element.children(".media-body").after("<h4 class='media-heading m-child'>" + request.first_name + " " + request.last_name + "</h4>");               //username
                 });
 
-                $("#feed_display").append($media_element);
+                var database_link = '/event/' + (events[i].id);
+                $("#feed_display").append($("<a href=" + database_link + "></a>").append($media_element));
         }
 }
-
-//okay this link shit is shoddy af
-$(document).ready(function(){
-        $("#feed_display").on("click", ".media", function(){
-                var event_id = event.target.id.slice(12);
-                window.location.href = "/event/" + event_id;
-        });
-});
