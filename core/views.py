@@ -17,6 +17,7 @@ def home(request):
 def create_event(request):
 	return render(request,'core/create_event.html.j2')
 
+@login_required
 def profile(request):
     return render(request, 'core/profile.html.j2')
 
