@@ -51,6 +51,7 @@ function update_location(location){
         pollEvents(location);
 }
 
+//might be a better idea constructing the elements then filling in data
 function update_event_feed(events){
         console.log(events.length);
         for(var i = 0; i < events.length; i++){
