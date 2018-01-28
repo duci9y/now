@@ -11,11 +11,10 @@
 .content{
 	width: 100%;
 	padding: 5%;
-	padding-top: 6em
+	padding-top: 6em;
 }
 #bio{
 	padding: 2%;
-	text-align:justify;
 }
 
 #info{
@@ -30,4 +29,9 @@
 
 .head{
 	padding-bottom: 5%;
+}
+
+.textedit{
+	width: 100%;
+	min-height: 100px;
 }
