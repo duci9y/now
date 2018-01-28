@@ -21,9 +21,10 @@ def create_profile_for_user(sender, **kwargs):
         social = UserSocialAuth.objects.get(user=user)
         p.first_name = social.extra_data['first_name']
         p.last_name = social.extra_data['last_name']
+        p.fbid = social.uid
     except UserSocialAuth.DoesNotExist as e:
         pass
-        
+
     p.save()
 
     print(p)
