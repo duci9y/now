@@ -13,7 +13,7 @@ def home(request):
 
 def details(request, event_id):
     event = Event.objects.get(pk=event_id)
-    # event_host = Profile.objects.get(pk=event.host)
+    event_host = Profile.objects.get(pk=0)
     context = {'location': event.location,
                'time_range': event.start_time.strftime("%y/%m/%d %H:%M") + " - " + event.end_time.strftime("%H:%M"),
                'event_description': event.description
