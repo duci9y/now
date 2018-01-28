@@ -40,9 +40,6 @@ def create_event(request):
 def profile(request):
     return render(request, 'core/profile.html.j2')
 
-def profile(request):
-    return render(request, 'core/profile.html.j2')
-
 class EventViewSet(viewsets.ModelViewSet):
     serializer_class = EventSerializer
 
