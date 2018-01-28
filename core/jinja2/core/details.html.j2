@@ -3,8 +3,9 @@
   
 {% block head %}
 <link rel="stylesheet" type="text/css" href="{{ static('core/profile.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ static('core/details_styles.css') }}">
 <script src="https://use.fontawesome.com/944a8f6eea.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Arvo|Lato" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Arvo|Lato" rel="stylesheet">
 {% endblock %}
 
 {% block body %}
@@ -30,6 +31,8 @@
 
         <!-- Intercepting jinja2 stuff for js use -->
         <script>
+                var lat = {{event.location[0]}};
+                var lng = {{event.location[1]}};
                 var fbid = {{event.host.fbid}};
         </script>
         <main role="main" class="container">
