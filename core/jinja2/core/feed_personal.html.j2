@@ -55,7 +55,7 @@
                                        <h4 class="media-heading">{{event.host.first_name}} {{event.host.last_name}}</h4>
                                        <div class="feed_event_info row">
                                                <div class="col">
-                                                       {{event.location[0]}}, {{event.location[1]}}
+                                                       {{event.location_name}}
                                                </div>
                                                <div class="col">
                                                        🕒 {{event.start_time.strftime("%y/%m/%d %H:%M") + " - " + event.end_time.strftime("%H:%M")}}
@@ -80,7 +80,7 @@
                                        <h4 class="media-heading">{{event.host.first_name}} {{event.host.last_name}}</h4>
                                        <div class="feed_event_info row">
                                                <div class="col">
-                                                       {{event.location[0]}}, {{event.location[1]}}
+                                                       {{event.location_name}}
                                                </div>
                                                <div class="col">
                                                        🕒 {{event.start_time.strftime("%y/%m/%d %H:%M") + " - " + event.end_time.strftime("%H:%M")}}
