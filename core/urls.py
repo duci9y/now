@@ -8,5 +8,6 @@ router.register(r'api/profiles', views.ProfileViewSet, 'profile')
 
 urlpatterns = [
     url(r'^$', views.home, name='home'),
+    url(r'^profile/$', views.profile, name='profile'),
     url(r'^', include(router.urls)),
 ]
