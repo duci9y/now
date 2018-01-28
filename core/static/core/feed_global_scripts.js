@@ -74,14 +74,7 @@ function update_event_feed(events){
                         $media_element.children(".media-body").after("<h4 class='media-heading m-child'>" + request.first_name + " " + request.last_name + "</h4>");               //username
                 });
 
-                $("#feed_display").append($media_element);
+                var dlink = '/event/' + events[i].id;
+                $("#feed_display").append($('<a href=' + dlink + '></a>').append($media_element));
         }
 }
-
-//okay this link shit is shoddy af
-$(document).ready(function(){
-        $("#feed_display").on("click", ".media", function(){
-                var event_id = event.target.id.slice(12);
-                window.location.href = "/event/" + event_id;
-        });
-});
