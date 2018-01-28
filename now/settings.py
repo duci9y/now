@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'social_django',
     'core.apps.CoreConfig',
     'rest_framework',
+    'rest_framework_gis',
 ]
 
 MIDDLEWARE = [
