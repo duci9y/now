@@ -52,6 +52,25 @@ function update_location(location){
 }
 
 //might be a better idea constructing the elements then filling in data
+// <div class="media row">
+//         <div class="media-left media-middle">
+//                 <img class="media-object" style="width:60px">
+//         </div>
+//         <div class="media-body">
+//                 <h4 class="media-heading name"></h4>
+//                 <div class="feed_event_info row">
+//                         <div class="col location">
+//                         </div>
+//                         <div class="col time_range">
+//                         </div>
+//                 </div>
+//                 <p class="description"></p>
+//         </div>
+// </div>
+
+
+
+
 function update_event_feed(events){
         console.log(events.length);
         for(var i = 0; i < events.length; i++){
