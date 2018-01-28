@@ -44,8 +44,8 @@
         </nav>
         <!-- Intercepting jinja2 stuff for js use -->
         <script>
-                var lat = {{location[0]}};
-                var lng = {{location[1]}};
+                var lat = {{event.location[0]}};
+                var lng = {{event.location[1]}};
         </script>
         <main role="main" class="container">
                 <div class="row profile_info">
@@ -54,14 +54,14 @@
                         </div>
                         <div class="col-8 col-sm-9 col-md-10 col-lg-10 col-xl-10">
                                 <h3 class="username">
-                                        {{backends.associated.first().extra_data['first_name']}}
+                                        {{event.host.first_name}}
                                         <!-- Olivia Sobvechik -->
                                 </h3>
                                 <p id="post_time">
                                         <!-- Posted 25 minutes ago. -->
                                 </p>
                                 <h6 class="user_description">
-                                        {{user_description}}
+                                        {{event.host.bio}}
                                         <!-- I am very quirky because I go to Tufts. -->
                                 </h6>
 
@@ -72,12 +72,12 @@
                                 📍
                         </div>
                         <div class="col col-sm col-md col-lg-3 col-xl-3 text-right">
-                                🕒 {{time_range}}
+                                🕒 {{event.start_time.strftime("%y/%m/%d %H:%M") + " - " + event.end_time.strftime("%H:%M")}}
                         </div>
                 </div>
                 <div class="row event_description">
                         <p class="col col-sm">
-                                {{event_description}}
+                                {{event.description}}
                         </p>
                 </div>
                 <div class="row" id="map"></div>
