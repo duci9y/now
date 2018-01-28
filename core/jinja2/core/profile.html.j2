@@ -1,18 +1,36 @@
 {% extends 'layout.html.j2' %}
   
     {% block head %}
-    	<title>Flare Profile Page</title>
     	<link rel="stylesheet" type="text/css" href="{{ static('core/profile.css') }}">
     	<script src="https://use.fontawesome.com/944a8f6eea.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Arvo|Lato" rel="stylesheet">
     {% endblock %}
 
 
 {% block body %}
-<nav class="navbar navbar-dark bg-dark fixed-top header">
-	<a class="navbar-brand" href="#">FLARE</a>
+    <nav class="navbar navbar-dark bg-dark navbar-expand-sm fixed-top" id="new-dark">
+            <a class="navbar-brand" id="brandname" href="#"><i class="fa fa-asterisk" aria-hidden="true"></i>Flare</a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item ">
+        <a class="nav-link" href="#">Feed</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" href="#">Profile<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="../create_event">Creat Event</a>
+      </li>
+    </ul>
+  </div>
 </nav>
 
 <div class="container content">
+
 	<header class="mx-auto head">
 		<div class="row header">
 			<div class="col-sm-5">
@@ -33,9 +51,9 @@
         </div> 
 	</div>
 	<div class="buttons">
-		<button type="button" class="btn btn-primary float-right" id="edit-btn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button>
+		<button type="button" class="btn btn-primary float-right better-blue" id="edit-btn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button>
 		<button type="button" class="btn btn-link float-right" id="cancel-btn"><i class="fa fa-times" aria-hidden="true"></i> Cancel</button>
-		<button type="button" class="btn btn-primary float-right" id="save-btn"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save</button>
+		<button type="button" class="btn btn-primary float-right better-blue" id="save-btn"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save</button>
 	</div>
 </div>
 <script>
