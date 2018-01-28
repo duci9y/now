@@ -83,7 +83,7 @@ function update_event_feed(events){
                 var time_range = startTime.format("YY/MM/d HH:mm") + " - " + endTime.format("HH:mm");
 
                 //pulls info about host
-                $.ajax({async: false, url: 'http://localhost:8000/api/profiles/' + events[i]["host"]}
+                $.ajax({async: false, url: '/api/profiles/' + events[i]["host"]}
                 ).done(function(request){
                         var icon_url = "http://graph.facebook.com/" + request.fbid + "/picture?type=small";
                         $media_element.find(".name").text(request.first_name + " " + request.last_name);
