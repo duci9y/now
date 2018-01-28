@@ -2,7 +2,8 @@
 
 {% block body %}
   <h2>Homepage</h2>
-  <p>Hello {{ user.username }}!</p>
+  <p>{{ events[0].host.first_name }}</p>
+  <p>Hello {{ backends.associated.first().extra_data['first_name'] }}!</p>
   <p>Hello {{ backends.associated.first().uid }}!</p>
   <p>{{ url('profile-detail', args=[user.profile.id])}}</p>
 {% endblock %}
