@@ -9,5 +9,6 @@ router.register(r'api/profiles', views.ProfileViewSet, 'profile')
 urlpatterns = [
     url(r'^$', views.home, name='home'),
     url(r'^feed/$', views.feed_global, name='feed'),
+    url(r'^event/(?P<event_id>\w{0,50})/$', views.details, name='event_details'),
     url(r'^', include(router.urls)),
 ]

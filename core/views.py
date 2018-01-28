@@ -11,6 +11,15 @@ from django.contrib.gis.measure import D
 def home(request):
     return render(request, 'core/home.html.j2')
 
+def details(request, event_id):
+    event = Event.objects.get(pk=event_id)
+    # event_host = Profile.objects.get(pk=event.host)
+    context = {'location': event.location,
+               'time_range': event.start_time.strftime("%y/%m/%d %H:%M") + " - " + event.end_time.strftime("%H:%M"),
+               'event_description': event.description
+              }
+    return render(request, 'core/details.html.j2', context=context)
+
 def feed_global(request):
     queryset = Event.objects.all()
     context = { 'events': queryset }

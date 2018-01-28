@@ -7,7 +7,7 @@
 
         <title>Evevnt Details</title>
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <link href="details_styles.css" type="text/css" rel="stylesheet" />
+        <link href="{{static('core/details_styles.css')}}" type="text/css" rel="stylesheet" />
 </head>
 <body>
         <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
@@ -42,35 +42,42 @@
                         </form> -->
                 </div>
         </nav>
+        <!-- Intercepting jinja2 stuff for js use -->
+        <script>
+                var lat = {{location[0]}};
+                var lng = {{location[1]}};
+        </script>
         <main role="main" class="container">
                 <div class="row profile_info">
                         <div class="col-4 col-sm-3 col-md-2 col-lg-2 col-xl-2">
-                                <img class="profile_image" src="profile_icon_sample.jpg" width="100%"/>
+                                <img class="profile_image" src="{{static('core/profile_icon_sample.jpg')}}" width="100%"/>
                         </div>
                         <div class="col-8 col-sm-9 col-md-10 col-lg-10 col-xl-10">
                                 <h3 class="username">
-                                        Olivia Sobvechik
+                                        {{backends.associated.first().extra_data['first_name']}}
+                                        <!-- Olivia Sobvechik -->
                                 </h3>
                                 <p id="post_time">
-                                        Posted 25 minutes ago.
+                                        <!-- Posted 25 minutes ago. -->
                                 </p>
                                 <h6 class="user_description">
-                                        I am very quirky because I go to Tufts.
+                                        {{user_description}}
+                                        <!-- I am very quirky because I go to Tufts. -->
                                 </h6>
 
                         </div>
                 </div>
                 <div class="row event_info">
                         <div class="col col-sm col-md col-lg-3 col-xl-3">
-                                📍 Davis rectangle
+                                📍
                         </div>
                         <div class="col col-sm col-md col-lg-3 col-xl-3 text-right">
-                                🕒 4:00pm-6:00pm
+                                🕒 {{time_range}}
                         </div>
                 </div>
                 <div class="row event_description">
                         <p class="col col-sm">
-                                Come to JP Licks! I want ice cream and want to talk with someone when I do it.
+                                {{event_description}}
                         </p>
                 </div>
                 <div class="row" id="map"></div>
@@ -81,7 +88,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-        <script src="details_scripts.js"></script>
+        <script src="{{static('core/details_scripts.js')}}"></script>
         <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCECGPK1S7gGkDq-hzbQOXIanEu6kxk738&callback=initMap"></script>
 </body>
 </html>
