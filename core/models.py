@@ -6,7 +6,7 @@ class Profile(models.Model):
     bio = models.TextField(blank=True)
     first_name = models.CharField(max_length=100, blank=True)
     last_name = models.CharField(max_length=100, blank=True)
-
+    fbid = models.CharField(max_length=100, blank=True)
 
 class Event(models.Model):
     start_time = models.DateTimeField()
