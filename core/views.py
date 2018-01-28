@@ -9,7 +9,9 @@ from django.contrib.gis.measure import D
 
 @login_required
 def home(request):
-    return render(request, 'core/home.html.j2')
+    q = Event.objects.all()
+    context = { 'events': q }
+    return render(request, 'core/home.html.j2', context=context)
 
 def details(request, event_id):
     event = Event.objects.get(pk=event_id)
