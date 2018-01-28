@@ -69,7 +69,7 @@ function update_event_feed(events){
                 $.ajax({async: false, url: '/api/profiles/' + events[i]["host"]}
                 ).done(function(request){
                         console.log(request);
-                        icon_url = "http://graph.facebook.com/" + request.fbid + "/picture?type=small";
+                        icon_url = "//graph.facebook.com/" + request.fbid + "/picture?type=small";
                         $media_element.children(".media-left").append("<img src=" + icon_url + " class='media-object m-child' style='width:60px'>");
                         $media_element.children(".media-body").after("<h4 class='media-heading m-child'>" + request.first_name + " " + request.last_name + "</h4>");               //username
                 });
