@@ -9,7 +9,9 @@ from django.contrib.gis.measure import D
 
 @login_required
 def home(request):
-    return render(request, 'core/home.html.j2')
+    q = Event.objects.all()
+    context = { 'events': q }
+    return render(request, 'core/home.html.j2', context=context)
 
 class EventViewSet(viewsets.ModelViewSet):
     serializer_class = EventSerializer
