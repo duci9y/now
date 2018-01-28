@@ -66,7 +66,7 @@ function update_event_feed(events){
                 $media_element.find(".feed_event_info").append("<div class='col m-child'>close to " + events[i]["location_name"] +
                 "</div>" + startTime.format("YY/MM/d HH:mm") + " - " + endTime.format("HH:mm") + "<div class='col m-child'></div><div class='col m-child'></div>")
                 $media_element.children(".media-body").append("<p class='m-child'>" + events[i]["description"] + "</p>");
-                $.ajax({async: false, url: 'http://localhost:8000/api/profiles/' + events[i]["host"]}
+                $.ajax({async: false, url: '/api/profiles/' + events[i]["host"]}
                 ).done(function(request){
                         console.log(request);
                         icon_url = "http://graph.facebook.com/" + request.fbid + "/picture?type=small";
