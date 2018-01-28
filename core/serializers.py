@@ -12,4 +12,4 @@ class EventSerializer(serializers.ModelSerializer):
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
-        fields = ('id', 'bio', 'events', 'interesting_events',)
+        fields = ('first_name', 'last_name','fbid','id', 'bio', 'events', 'interesting_events',)

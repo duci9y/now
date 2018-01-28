@@ -7,12 +7,13 @@ function pollEvents(location) {
                 if(response.length != 0 && response.length != global_event_count){
                         console.log("Updating feed");
                         global_event_count = response.length;
+                        $("#feed_display").empty();
                         update_event_feed(response);
                 }
         });
 }
 
-$("#btn_allow_location").click(function(){
+function getPosition(){
         var startPos;
         var geoSuccess = function(position) {
                 startPos = position;
@@ -27,7 +28,21 @@ $("#btn_allow_location").click(function(){
                 //   3: timed out
         };
         navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
-})
+}
+
+$(document).ready(function(){
+        navigator.permissions.query({name:'geolocation'}).then(function(result) {
+                if (result.state === 'granted') {
+                        getPosition();
+                }
+                // else if (result.state === 'prompt') {
+                //
+                // }
+          // Don't do anything if the permission was denied.
+        });
+});
+
+$("#btn_allow_location").click(getPosition());
 
 function update_location(location){
         $("#location_info").text("Lat: " + location.coords.latitude.toPrecision(8) + "; Lon: " + location.coords.longitude.toPrecision(8));
@@ -41,20 +56,34 @@ function update_event_feed(events){
         for(var i = 0; i < events.length; i++){
                 var startTime = moment(events[i]["start_time"], "YYYY-MM-DDTHH-mm-ss");
                 var endTime = moment(events[i]["end_time"], "YYYY-MM-DDTHH-mm-ss");
-                $.get('http://localhost:8000/api/profiles/' + events[i]["host"], function(request){
-                        console.log(request);
-                })
-
                 var p_id = "media_frame_" + i;
                 var $media_element = $("<div>", {id: p_id, class: "media row"});
                 //this line should also add the profile pic of the user
-                $media_element.append($("<div>", {class: "media-left media-middle"}));
-                $media_element.append($("<div>", {class: "media-body"}));
-                $media_element.children(".media-body").append("<h4 class='media-heading'></h4>");               //username
-                $media_element.children(".media-body").append("<div class='feed_event_info row'></div>");
-                $media_element.find(".feed_event_info").append("<div class='col'>" + events[i]["location"]["coordinates"][0].toPrecision(8) + "\t" + events[i]["location"]["coordinates"][1].toPrecision(8) +
-                                                               "</div>" + startTime.format("YY/MM/d HH:mm") + " - " + endTime.format("HH:mm") + "<div class='col'></div><div class='col'></div>")
-                $media_element.children(".media-body").append("<p>" + events[i]["description"] + "</p>");
+                $media_element.append($("<div>", {class: "media-left media-middle m-child"}));
+                $media_element.append($("<div>", {class: "media-body m-child"}));
+                $media_element.children(".media-body").append("<div class='feed_event_info row m-child'></div>");
+                $media_element.find(".feed_event_info").append("<div class='col m-child'>" + events[i]["location"]["coordinates"][0].toPrecision(8) + "\t" + events[i]["location"]["coordinates"][1].toPrecision(8) +
+                "</div>" + startTime.format("YY/MM/d HH:mm") + " - " + endTime.format("HH:mm") + "<div class='col m-child'></div><div class='col m-child'></div>")
+                $media_element.children(".media-body").append("<p class='m-child'>" + events[i]["description"] + "</p>");
+                $.ajax({async: false, url: 'http://localhost:8000/api/profiles/' + events[i]["host"]}
+                ).done(function(request){
+                        console.log(request);
+                        icon_url = "http://graph.facebook.com/" + request.fbid + "/picture?type=small";
+                        $media_element.children(".media-left").append("<img src=" + icon_url + " class='media-object m-child' style='width:60px'>");
+                        $media_element.children(".media-body").after("<h4 class='media-heading m-child'>" + request.first_name + " " + request.last_name + "</h4>");               //username
+                });
+
                 $("#feed_display").append($media_element);
         }
 }
+
+$(document).ready(function(){
+        $("#feed_display").on("click", ".media", function(){
+                var event_id = event.target.id.slice(12);
+                window.location.href = "/event/" + event_id;
+        });
+});
+//
+// $("#feed_display").on('click', 'media',function(event){
+//
+//});

@@ -11,3 +11,7 @@ body{
         padding-bottom: 5px;
         text-align: center;
 }
+
+.m-child{
+        pointer-events: none;
+}
