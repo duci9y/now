@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'social_django',
     'core.apps.CoreConfig',
     'rest_framework',
+    'rest_framework_gis',
 ]
 
 MIDDLEWARE = [
@@ -158,8 +159,9 @@ LOGIN_REDIRECT_URL = 'home'
 SOCIAL_AUTH_FACEBOOK_KEY = '1202538486515188'  # App ID
 SOCIAL_AUTH_FACEBOOK_SECRET = 'cf617e2d9d2947902dd0b62aafc19189'  # App Secret
 
-# REST_FRAMEWORK = {
-#     'DEFAULT_PERMISSION_CLASSES': (
-#         'rest_framework.permissions.IsAuthenticated',
-#     )
-# }
+GDAL_LIBRARY_PATH = os.getenv('GDAL_LIBRARY_PATH')
+GEOS_LIBRARY_PATH = os.getenv('GEOS_LIBRARY_PATH')
+
+import django_heroku
+django_heroku.settings(locals())
+DATABASES['default']['ENGINE'] = 'django.contrib.gis.db.backends.postgis'

@@ -4,10 +4,12 @@ from .models import Profile, Event
 class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
-        fields = ('start_time', 'end_time', 'location', 'description',
+        host = serializers.HiddenField(default=serializers.CurrentUserDefault())
+        fields = ('id', 'start_time', 'end_time', 'location', 'description',
                     'host', 'guests',)
+
 
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
-        fields = ('bio', 'events', 'interesting_events',)
+        fields = ('id', 'bio', 'events', 'interesting_events',)

@@ -1,5 +1,9 @@
 # Now
 
+We came up with this idea while trying to split a big dinner order in our computer building. What if there was an app to find other hungry hackers around me who would want to split a large pizza and get some sweet savings? We soon realized how much broader the scope could be of such an app. Want to go ice skating this weekend but all your friends are busy? Post on now and see who else wants to go with you!
+
+We believe the appeal of our idea is in its spontaneity -- hence the name. Some people don't make plans, and some people's plans fall through. Maybe a more fuzzily planned event would work better for these people.
+
 ## Installation
 
 Make sure you have the latest version of `pip` installed. If you don't have
