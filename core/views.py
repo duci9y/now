@@ -13,6 +13,10 @@ def home(request):
     context = { 'events': q }
     return render(request, 'core/home.html.j2', context=context)
 
+@login_required
+def create_event(request):
+	return render(request,'core/create_event.html.j2')
+
 def profile(request):
     return render(request, 'core/profile.html.j2')
 
