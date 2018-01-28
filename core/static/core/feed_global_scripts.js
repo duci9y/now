@@ -51,6 +51,7 @@ function update_location(location){
         pollEvents(location);
 }
 
+//might be a better idea constructing the elements then filling in data
 function update_event_feed(events){
         console.log(events.length);
         for(var i = 0; i < events.length; i++){
@@ -73,14 +74,7 @@ function update_event_feed(events){
                         $media_element.children(".media-body").after("<h4 class='media-heading m-child'>" + request.first_name + " " + request.last_name + "</h4>");               //username
                 });
 
-                $("#feed_display").append($media_element);
+                var database_link = '/event/' + (events[i].id);
+                $("#feed_display").append($("<a href=" + database_link + "></a>").append($media_element));
         }
 }
-
-//okay this link shit is shoddy af
-$(document).ready(function(){
-        $("#feed_display").on("click", ".media", function(){
-                var event_id = event.target.id.slice(12);
-                window.location.href = "/event/" + event_id;
-        });
-});

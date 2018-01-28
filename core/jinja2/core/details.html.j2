@@ -44,6 +44,9 @@
         </nav>
         <!-- Intercepting jinja2 stuff for js use -->
         <script>
+                //map display needs this
+                var lat = {{event.location[0]}};
+                var lng = {{event.location[1]}};
                 var fbid = {{event.host.fbid}};
         </script>
         <main role="main" class="container">
