@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js">
+		
+	</script>
+	<title>Flare | Post</title>
+</head>
+<body>
+	<container>
+		<nav class="navbar navbar-dark bg-dark">
+			<a class="navbar-brand" href="#">
+				<button type="button" class="btn btn-dark btn-sm">Cancel</button>
+			</a>
+		</nav>
+		<form class="container">
+			<div class="form-row">
+				<div class="col align-self-start"></div>
+				<div class="form-group col- col-sm-6 col-md-6 col-lg-6 align-self-center" style="padding-top: 15px">
+					<label for="locationInfo">Location</label>
+					<input id="pac-input" type="text" class="controls form-control" placeholder="Event Location">
+					<a id="map"> </a>
+				</div>
+				<div class="col align-self-end"></div>
+			</div>
+			<div class="form-row">
+				<div class="col align-self-start"></div>
+				<div class="form-group col- col-sm-3 col-md-3 col-lg-3 align-self-center">
+					<label for="startTime">Start Date/Time</label>
+					<input id="Dstart" type="date" class="form-control">
+					<input id="Tstart" type="time" class="form-control">
+				</div>
+				<div class="form-group col- col-sm-3 col-md-3 col-lg-3">
+					<label for="endTime">End Date/Time</label>
+					<input id="Dend" type="date" class="form-control">
+					<input id="Tend" type="time" class="form-control">
+				</div>
+				<div class="col align-self-end"></div>
+			</div>
+			<div class="form-row">
+				<div class="col align-self-start"></div>
+				<div class="form-group col- col-sm-6 col-md-6 col-lg-6 align-self-center">
+					<label for="postContent">Description</label>
+					<textarea id="description" class="form-control span6" rows="3"></textarea>
+				</div>
+				<div class="col align-self-end"></div>
+			</div>
+			<button type="submit" onclick="pushData(this)" class="btn btn-dark btn-lg" data-toggle="button" aria-pressed="false" autocomplete="off">Post</button>
+		</form>
+	</container>
+	<!-- Bootstrap -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" 
+	crossorigin="anonymous"></script>
+	<script type="text/javascript">
+		var autocomplete;
+		var latitude;
+		var longitude;
+
+		$( document ).ready(function() {
+			// using jQuery
+
+			var input = document.getElementById('pac-input');
+      		autocomplete = new google.maps.places.Autocomplete(input);
+
+			function getCookie(name) {
+			    var cookieValue = null;
+			    if (document.cookie && document.cookie !== '') {
+			        var cookies = document.cookie.split(';');
+			        for (var i = 0; i < cookies.length; i++) {
+			            var cookie = jQuery.trim(cookies[i]);
+			            // Does this cookie string begin with the name we want?
+			            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+			                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+			                break;
+			            }
+			        }
+			    }
+			    return cookieValue;
+			}
+			var csrftoken = getCookie('csrftoken');
+
+			function csrfSafeMethod(method) {
+			    // these HTTP methods do not require CSRF protection
+			    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+			}
+			$.ajaxSetup({
+			    beforeSend: function(xhr, settings) {
+			        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+			            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+			        }
+			    }
+			});
+		});	
+
+
+
+		function pushData()
+		{
+			var placename = autocomplete.gm_accessors_.place.Jc.formattedPrediction;
+
+			var Dstart = document.getElementById("Dstart").value;
+			var Tstart = document.getElementById("Tstart").value;
+			var t= "T";
+			var s =":00Z";
+			var startDate = Dstart+ t+Tstart;
+			var start = new Date(startDate); //this
+			
+
+			var Dend = document.getElementById("Dend").value;
+			var Tend = document.getElementById("Tend").value;
+			var endDate = Dend+ t+Tend;
+			var end = new Date(endDate); //this
+
+			//Getting the location id
+
+			var geocoder = new google.maps.Geocoder();
+			geocoder.geocode( { 'address': placename}, function(results, status) {
+				if (status == google.maps.GeocoderStatus.OK) {
+				    latitude = results[0].geometry.location.lat(); //this
+				    longitude = results[0].geometry.location.lng(); //this
+				    
+	    			var accountInfo = {
+	    				"start_time":start.toISOString(),
+	    				"end_time":end.toISOString(),
+	    				"location": {
+	    					"type": "Point",
+	    					"coordinates": [
+		    					latitude,
+		    					longitude
+	    					]
+	    				},
+	    				"description": $('#description').val(),
+	    				"host": {{user.id}}
+	    			};
+
+	    			$.ajax({
+	    				type: "POST",
+	    				url: "{{ url('event-list') }}",
+	    				data: JSON.stringify(accountInfo),
+	    				contentType: 'application/json',
+	    				success: function(responseData, status, xhr) {
+	    					console.log(responseData);
+	    				},
+	    				error: function(request, status, error) {
+	    					console.log(request.responseText);
+	    				}
+	    			});
+	    		} 
+			}); 
+
+			
+			this.event.preventDefault();
+
+			return false;
+		}
+	</script>
+	 <script src="https://maps.googleapis.com/maps/api/js?key= AIzaSyCECGPK1S7gGkDq-hzbQOXIanEu6kxk738&libraries=places&sensor=false&language=gb"></script>
+      
+</body>
+</html>
