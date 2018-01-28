@@ -38,7 +38,7 @@
 			</div>
 			<div class="col-sm-7 text-justify text-center">
 				<div id="info">
-					<div id="name" class="text-center">{{ user.username }}</div>
+					<div id="name" class="text-center">{{ user.profile.first_name + ' ' + user.profile.last_name }}</div>
 				</div>
 			</div>
 		</div>
@@ -97,7 +97,7 @@
 
 	$(document).ready(function() {
         $(".textedit").css("display", "none");
-        $(".profilepic").attr("src", "http://graph.facebook.com/" + {{backends.associated.first().uid}} + "/picture?type=normal");
+        $(".profilepic").attr("src", "http://graph.facebook.com/" + {{ user.profile.fbid }} + "/picture?type=normal");
 		$("#save-btn").css("display", "none");
 		$("#cancel-btn").css("display", "none");
 		$("#edit-btn").on('click', edit);
