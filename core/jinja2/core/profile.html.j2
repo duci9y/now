@@ -1,0 +1,128 @@
+{% extends 'layout.html.j2' %}
+  
+    {% block head %}
+    	<title>Flare Profile Page</title>
+    	<link rel="stylesheet" type="text/css" href="{{ static('core/profile.css') }}">
+    	<script src="https://use.fontawesome.com/944a8f6eea.js"></script>
+    {% endblock %}
+
+
+{% block body %}
+  		<nav class="navbar navbar-dark bg-dark fixed-top header">
+  			<a class="navbar-brand" href="#">FLARE</a>
+  		</nav>
+
+	<div class="container">
+		<main class="mx-auto content">
+			<header class="mx-auto head">
+				<div class="row header">
+					<div class="col-sm-5">
+						<img class="image-fluid rounded-circle mx-auto d-block profilepic" alt="profile pic">
+					</div>
+					<div class="col-sm-7 text-justify text-center">
+						<div id="info">
+							<div id="name" class="text-center">{{ user.username }}</div>
+						</div>
+					</div>
+				</div>
+				</header>
+				<div class="row " id="bio">
+					{{user.profile.bio}}
+				</div>
+				<div class="buttons">
+					<button type="button" class="btn btn-primary float-right" id="edit-btn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button>
+					<button type="button" class="btn btn-link float-right" id="cancel-btn"><i class="fa fa-times" aria-hidden="true"></i> Cancel</button>
+					<button type="button" class="btn btn-primary float-right" id="save-btn"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save</button>
+				</div>
+
+
+		</main>
+
+			
+	</div>
+
+    <script>
+    	var biotext;
+    	function edit() {
+    		$("#bio").attr("contenteditable", "true");
+    		$("#edit-btn").css("display", "none");
+    		$("#save-btn").show();
+    		$("#cancel-btn").show();
+    		$("#bio").css("border", "black solid 2px");
+    		biotext = $("#bio").html();
+
+    	}
+
+    	function save() {
+    		$("#bio").attr("contenteditable", "false");
+    		$("#edit-btn").show();
+    		$("#save-btn").css("display", "none");
+    		$("#cancel-btn").css("display", "none");
+    		$("#bio").css("border", "none");
+            var data = { "bio": $("#bio").html()};
+
+            $.ajax({
+                url : "{{url('profile-detail', args=[user.profile.id])}}",
+                data : data,
+                type : 'PATCH',
+                dataType: 'json',
+            });
+
+    	}
+
+    	function cancel() {
+    		$("#bio").html(biotext);
+    		$("#edit-btn").show();
+    		$("#save-btn").css("display", "none");
+    		$("#cancel-btn").css("display", "none");
+    		$("#bio").css("border", "none");
+    	}
+
+    	$(document).ready(function() {
+            $(".profilepic").attr("src", "http://graph.facebook.com/" + {{backends.associated.first().uid}} + "/picture?type=normal");
+    		$("#save-btn").css("display", "none");
+    		$("#cancel-btn").css("display", "none");
+    		$("#edit-btn").on('click', edit);
+    		$("#save-btn").on('click', save);
+    		$("#cancel-btn").on('click', cancel);
+
+
+            // using jQuery
+            function getCookie(name) {
+                var cookieValue = null;
+                if (document.cookie && document.cookie !== '') {
+                    var cookies = document.cookie.split(';');
+                    for (var i = 0; i < cookies.length; i++) {
+                        var cookie = jQuery.trim(cookies[i]);
+                        // Does this cookie string begin with the name we want?
+                        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
+            var csrftoken = getCookie('csrftoken');
+
+
+            function csrfSafeMethod(method) {
+            // these HTTP methods do not require CSRF protection
+                return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+            }
+            $.ajaxSetup({
+                beforeSend: function(xhr, settings) {
+                    if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                        xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                    }
+                }
+            });
+
+    	});
+
+
+
+
+    </script>
+  
+    {% endblock %}

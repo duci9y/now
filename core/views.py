@@ -9,6 +9,9 @@ from rest_framework import permissions
 def home(request):
     return render(request, 'core/home.html.j2')
 
+def profile(request):
+    return render(request, 'core/profile.html.j2')
+
 class EventViewSet(viewsets.ModelViewSet):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
