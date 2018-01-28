@@ -159,8 +159,5 @@ LOGIN_REDIRECT_URL = 'home'
 SOCIAL_AUTH_FACEBOOK_KEY = '1202538486515188'  # App ID
 SOCIAL_AUTH_FACEBOOK_SECRET = 'cf617e2d9d2947902dd0b62aafc19189'  # App Secret
 
-# REST_FRAMEWORK = {
-#     'DEFAULT_PERMISSION_CLASSES': (
-#         'rest_framework.permissions.IsAuthenticated',
-#     )
-# }
+import django_heroku
+django_heroku.settings(locals())
