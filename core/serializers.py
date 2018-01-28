@@ -6,7 +6,7 @@ class EventSerializer(serializers.ModelSerializer):
         model = Event
         host = serializers.HiddenField(default=serializers.CurrentUserDefault())
         fields = ('id', 'start_time', 'end_time', 'location', 'description',
-                    'host', 'guests',)
+                    'host', 'guests', 'location_name',)
 
 
 class ProfileSerializer(serializers.ModelSerializer):
