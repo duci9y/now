@@ -12,6 +12,7 @@ class Event(models.Model):
     start_time = models.DateTimeField()
     end_time = models.DateTimeField()
     location = models.PointField(srid=4269)
+    location_name = models.CharField(max_length=100)
     description = models.TextField()
     host = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='events')
     guests = models.ManyToManyField(Profile, related_name='interesting_events', blank=True)
