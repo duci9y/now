@@ -159,5 +159,8 @@ LOGIN_REDIRECT_URL = 'home'
 SOCIAL_AUTH_FACEBOOK_KEY = '1202538486515188'  # App ID
 SOCIAL_AUTH_FACEBOOK_SECRET = 'cf617e2d9d2947902dd0b62aafc19189'  # App Secret
 
+GDAL_LIBRARY_PATH = os.getenv('GDAL_LIBRARY_PATH')
+GEOS_LIBRARY_PATH = os.getenv('GEOS_LIBRARY_PATH')
+
 import django_heroku
 django_heroku.settings(locals())
