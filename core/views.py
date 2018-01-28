@@ -9,6 +9,11 @@ from rest_framework import permissions
 def home(request):
     return render(request, 'core/home.html.j2')
 
+def feed_global(request):
+    queryset = Event.objects.all()
+    context = { 'events': queryset }
+    return render(request, 'core/feed_global.html.j2', context=context)
+
 class EventViewSet(viewsets.ModelViewSet):
     queryset = Event.objects.all()
     serializer_class = EventSerializer

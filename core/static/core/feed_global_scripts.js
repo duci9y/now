@@ -1,9 +1,10 @@
-(function pollEvents(location) {
-        $.get('/api/events/', 'lat: location.coords.latitude,lng: location.coords.longitude', function (response) {
-                console.log(response);
-                setTimeout(pollEvents, 3000);
-        });
-}());
+// (function pollEvents() {
+//         $.getJSON('endpoint_placeholder', 'data_placeholder', function (response) {
+//                 setTimeout(pollEvents, 3000);
+//         });
+// }());
+//
+// $(document).ready(pollEvents());
 
 $("#btn_allow_location").click(function(){
         var startPos;
@@ -26,5 +27,4 @@ $("#btn_allow_location").click(function(){
 function update_location(location){
         $("#location_info").text("Lat: " + location.coords.latitude + "; Lon: " + location.coords.longitude);
         $("#location_btn_div").remove();
-        pollEvents(location);
 }

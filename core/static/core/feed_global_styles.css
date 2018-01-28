@@ -5,3 +5,8 @@ body{
 .media-body{
         padding-left: 10px;
 }
+
+#location_info{
+        padding-top: 5px;
+        padding-bottom: 5px;
+}
