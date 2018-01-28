@@ -90,7 +90,15 @@ function update_event_feed(events){
                         $media_element.find("img").attr("src", icon_url);
 
                 });
-                var database_link = '/event/' + (events[i].id);
-                $("#feed_display").append($("<a href=" + database_link + "></a>").append($media_element));
+
+                $("#feed_display").append($media_element);
         }
 }
+
+//okay this link shit is shoddy af
+$(document).ready(function(){
+        $("#feed_display").on("click", ".media", function(){
+                var event_id = event.target.id.slice(12);
+                window.location.href = "/event/" + event_id;
+        });
+});
