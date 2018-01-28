@@ -32,6 +32,13 @@ def feed_global(request):
     context = { 'events': queryset }
     return render(request, 'core/feed_global.html.j2', context=context)
 
+@login_required
+def create_event(request):
+	return render(request,'core/create_event.html.j2')
+
+def profile(request):
+    return render(request, 'core/profile.html.j2')
+
 class EventViewSet(viewsets.ModelViewSet):
     serializer_class = EventSerializer
 
